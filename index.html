@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landing Event</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1f2946;
+      --text: #edf2f7;
+      --accent: #6366f1;
+      --radius: 12px;
+      --transition: 0.3s ease;
+      --max-width: 1080px;
+      font-family: 'Inter', system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+    }
+    *{box-sizing:border-box;}
+    body{margin:0;background:linear-gradient(135deg,#0f172a 0%,#1f2946 80%);color:var(--text);min-height:100%;}
+    .container{width:90%;max-width:var(--max-width);margin:0 auto;padding:2rem 0;}
+    .banner{position:relative;overflow:hidden;border-radius:var(--radius);}
+    .countdown{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin:1rem 0;}
+    .countdown .unit{background:var(--card);padding:1rem 1.2rem;border-radius:10px;min-width:80px;text-align:center;}
+    .countdown .number{font-size:1.8rem;font-weight:700;}
+    .countdown .label{font-size:.75rem;text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
+    .subscribe{display:grid;gap:1rem;background:var(--card);padding:1.5rem;border-radius:var(--radius);margin-top:2rem;}
+    .subscribe h2{margin-top:0;}
+    .form-row{display:flex;flex-wrap:wrap;gap:.5rem;}
+    .form-row input[type=email]{flex:1;min-width:200px;padding:.75rem 1rem;border:none;border-radius:8px;}
+    .form-row button{padding:.75rem 1.5rem;border:none;border-radius:8px;background:var(--accent);color:#fff;cursor:pointer;font-weight:600;}
+    .faq{margin-top:3rem;}
+    .faq h2{margin-bottom:1rem;}
+    .faq-item{background:rgba(255,255,255,0.05);padding:1rem;margin-bottom:1rem;border-radius:8px;}
+    .faq-item summary{cursor:pointer;font-weight:600;}
+    .footer{margin-top:4rem;text-align:center;font-size:.9rem;}
+    .grid{display:grid;gap:2rem;}
+    @media (min-width:800px){
+      .subscribe{grid-template-columns:1fr 1fr;align-items:center;}
+      .countdown{justify-content:flex-start;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="banner">
+      <picture>
+        <source media="(max-width:767px)" srcset="assets/bannerparaviajarteanuncio.jpg" type="image/webp" />
+        <source media="(min-width:768px)" srcset="assets/bannerparaviajarteanuncio.jpg" type="image/webp" />
+        <img src="assets/bannerparaviajarteanuncio.jpg" alt="Banner del evento" style="width:100%;display:block;object-fit:cover;" loading="lazy" />
+      </picture>
+      <div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);display:flex;flex-direction:column;justify-content:center;align-items:center;color:var(--text);padding:2rem;"> 
+        <h1 style="margin:0;font-size:2.2rem;">Evento Imperdible</h1>
+        <p style="margin:4px 0 12px;">Comienza el 4 de noviembre de 2025 a las 00:00 hs (UTC-3)</p>
+        <div class="countdown" aria-label="Cuenta regresiva">
+          <div class="unit">
+            <div class="number" id="days">--</div>
+            <div class="label">Días</div>
+          </div>
+          <div class="unit">
+            <div class="number" id="hours">--</div>
+            <div class="label">Horas</div>
+          </div>
+          <div class="unit">
+            <div class="number" id="minutes">--</div>
+            <div class="label">Minutos</div>
+          </div>
+          <div class="unit">
+            <div class="number" id="seconds">--</div>
+            <div class="label">Segundos</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="subscribe" aria-label="Suscripción por correo">
+      <div>
+        <h2>Suscribite para recibir novedades</h2>
+        <p>Te avisamos antes que nadie. No uses el email de la escuela; creá uno exclusivo (ej: evento+tunombre@gmail.com).</p>
+      </div>
+      <div>
+        <form id="fallback-form">
+          <div class="form-row">
+            <input type="email" id="email" placeholder="tu@email.com" required aria-label="Email" />
+            <button type="submit">Suscribirse</button>
+          </div>
+          <div id="form-msg" style="margin-top:8px;font-size:.9rem;"></div>
+        </form>
+        <small>Si querés integrar Brevo de verdad, sustituí este bloque por el embed oficial. Ver: artículo de ayuda de Brevo.</small>
+      </div>
+    </section>
+
+    <section class="faq" aria-label="Preguntas frecuentes">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq-item">
+        <details>
+          <summary>¿Cuándo comienza el evento?</summary>
+          <p>El evento comienza el <strong>4 de noviembre de 2025 a las 00:00 hs (UTC-3)</strong>. La cuenta regresiva arriba ya está calibrada para esa hora.</p>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>¿Puedo suscribirme con cualquier email?</summary>
+          <p>Recomendamos usar una dirección exclusiva para este evento, así evitás mezclar notificaciones con correos escolares o personales importantes.</p>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>¿Qué pasa si pierdo la fecha?</summary>
+          <p>Te enviaremos recordatorios al email que registres si completás la suscripción. Asegurate de confirmar si usás doble opt-in.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="footer">
+      <p>&copy; 2025 Evento. Todos los derechos reservados.</p>
+    </div>
+  </div>
+  <script>
+    const target = new Date(Date.UTC(2025, 10, 4, 3, 0, 0));
+    function updateCountdown(){
+      const now = new Date();
+      const diff = target - now;
+      if(diff <=0){
+        document.getElementById('days').textContent='0';
+        document.getElementById('hours').textContent='00';
+        document.getElementById('minutes').textContent='00';
+        document.getElementById('seconds').textContent='00';
+        return;
+      }
+      const days = Math.floor(diff / (1000*60*60*24));
+      const hours = Math.floor((diff % (1000*60*60*24))/(1000*60*60));
+      const minutes = Math.floor((diff % (1000*60*60))/(1000*60));
+      const seconds = Math.floor((diff % (1000*60))/1000);
+      document.getElementById('days').textContent=days;
+      document.getElementById('hours').textContent=String(hours).padStart(2,'0');
+      document.getElementById('minutes').textContent=String(minutes).padStart(2,'0');
+      document.getElementById('seconds').textContent=String(seconds).padStart(2,'0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown,1000);
+    document.getElementById('fallback-form').addEventListener('submit',e=>{
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      if(!email) return;
+      localStorage.setItem('subscribed_email', email);
+      document.getElementById('form-msg').textContent='Gracias, te suscribiste con ' + email + '.';
+      document.getElementById('fallback-form').reset();
+    });
+  </script>
+</body>
+</html>
